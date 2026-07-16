@@ -9,7 +9,7 @@
 <!-- Fonts load normally here (this is your own hosting, no sandbox) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -60,32 +60,34 @@ a{color:inherit;text-decoration:none}
 /* ===== HERO ===== */
 header{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint)}
-.eyebrow .rule{height:1px;width:46px;background:linear-gradient(90deg,var(--iris-2),transparent)}
+.eyebrow .rule{height:1px;width:48px;background:linear-gradient(90deg,var(--iris-2),transparent)}
 .hero-h{margin:28px 0 0;font-size:clamp(46px,9.4vw,116px);line-height:.92;text-wrap:balance}
 .iris{background:linear-gradient(104deg,var(--iris-1),var(--iris-2) 40%,var(--iris-3) 75%,var(--chrome));
   -webkit-background-clip:text;background-clip:text;color:transparent;background-size:220% 100%;animation:shift 9s ease-in-out infinite}
 @keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.lede{margin:30px 0 0;max-width:33em;color:var(--muted);font-size:clamp(17px,2.1vw,21px);line-height:1.5}
-.hero-actions{margin-top:34px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.lede{margin:32px 0 0;max-width:33em;color:var(--muted);font-size:clamp(17px,2.1vw,21px);line-height:1.5}
+.hero-actions{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .by{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:12.5px;letter-spacing:.06em}
 .by b{color:var(--text);font-weight:600}
-.dot{width:5px;height:5px;border-radius:50%;background:var(--iris-2);box-shadow:0 0 10px var(--iris-2)}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--iris-2);box-shadow:0 0 10px var(--iris-2)}
 
 /* LinkedIn button */
-.li-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
+.li-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
   background:var(--li);color:#fff;box-shadow:0 10px 30px -10px rgba(10,102,194,.8);transition:transform .3s,box-shadow .3s}
-.li-btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px -10px rgba(10,102,194,.95)}
-.li-btn svg{width:18px;height:18px;fill:currentColor}
+/* No transform on hover: GSAP owns transform for the magnetic pull,
+   and an inline tween would fight a CSS one. Shadow does the lift. */
+.li-btn:hover{box-shadow:0 16px 40px -8px rgba(10,102,194,.95)}
+.li-btn svg{width:16px;height:16px;fill:currentColor}
 .li-btn.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line-2);box-shadow:none}
 .li-btn.ghost:hover{background:rgba(10,102,194,.18);border-color:var(--li)}
 
-.scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--faint);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.scrollcue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--faint);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
 .scrollcue .bar{width:1px;height:40px;background:linear-gradient(var(--iris-3),transparent);animation:drop 1.8s ease-in-out infinite}
 @keyframes drop{0%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform-origin:bottom}100%{transform:scaleY(.3);transform-origin:bottom}}
 
-.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:0 0 34px;flex-wrap:wrap}
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:0 0 32px;flex-wrap:wrap}
 .shead .k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--iris-3)}
-.shead h2{font-size:clamp(28px,4.4vw,44px);margin:10px 0 0}
+.shead h2{font-size:clamp(28px,4.4vw,44px);margin:8px 0 0}
 .shead p{margin:0;color:var(--muted);max-width:30em;font-size:15.5px}
 section{padding:80px 0}
 
@@ -93,7 +95,7 @@ section{padding:80px 0}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
 .cell{position:relative;border:1px solid var(--line);border-radius:20px;background:var(--glass);
   -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);
-  overflow:hidden;padding:22px;transition:border-color .4s,transform .5s cubic-bezier(.2,.7,.2,1)}
+  overflow:hidden;padding:24px;transition:border-color .4s,transform .5s cubic-bezier(.2,.7,.2,1)}
 .cell .glow{position:absolute;inset:-1px;border-radius:inherit;opacity:0;transition:opacity .45s;pointer-events:none;
   background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(120,120,255,.22),transparent 60%)}
 .cell:hover .glow{opacity:1}
@@ -109,30 +111,30 @@ section{padding:80px 0}
 .cell.eff{grid-column:span 3}
 .cell.phys{grid-column:span 3}
 
-.cover .mock{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:26px 28px;
+.cover .mock{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:24px 28px;
   background:linear-gradient(180deg,rgba(8,11,18,.35),rgba(8,11,18,.75))}
-.chrome-dots{display:flex;gap:7px;margin-bottom:auto}
-.chrome-dots i{width:10px;height:10px;border-radius:50%}
+.chrome-dots{display:flex;gap:8px;margin-bottom:auto}
+.chrome-dots i{width:8px;height:8px;border-radius:50%}
 .chrome-dots i:nth-child(1){background:#ff5f57}.chrome-dots i:nth-child(2){background:#febc2e}.chrome-dots i:nth-child(3){background:#28c840}
-.cover .kicker{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--iris-3);margin-bottom:14px}
+.cover .kicker{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--iris-3);margin-bottom:16px}
 .cover h3{font-size:clamp(30px,4.6vw,52px);max-width:12ch;text-wrap:balance}
-.cover .sub{margin:14px 0 20px;color:var(--muted);max-width:34ch;font-size:15px;line-height:1.5}
+.cover .sub{margin:16px 0 20px;color:var(--muted);max-width:34ch;font-size:15px;line-height:1.5}
 .cover .cbtns{display:flex;gap:12px;flex-wrap:wrap}
-.pill{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:560;
+.pill{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;font-size:14px;font-weight:560;
   border:1px solid var(--line-2);background:rgba(255,255,255,.05)}
 .pill.primary{background:linear-gradient(100deg,var(--iris-1),var(--iris-2));border:none;color:#fff}
-.cell .ico{width:34px;height:34px;color:var(--iris-3)}
+.cell .ico{width:32px;height:32px;color:var(--iris-3)}
 .cell .big-n{font-size:clamp(40px,6vw,60px);font-weight:800;line-height:1;letter-spacing:-.04em;
   background:linear-gradient(120deg,var(--chrome),var(--iris-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.cell .lbl{color:var(--muted);font-size:13.5px;margin-top:6px;line-height:1.4}
-.cell h4{margin:14px 0 6px;font-size:18px;font-weight:600;letter-spacing:-.022em}
+.cell .lbl{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.4}
+.cell h4{margin:16px 0 8px;font-size:18px;font-weight:600;letter-spacing:-.022em}
 .cell .desc-s{color:var(--muted);font-size:14px;line-height:1.5}
-.mcp .legend-row{display:flex;flex-direction:column;gap:11px;margin-top:12px}
-.mcp .li-row{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
+.mcp .legend-row{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.mcp .li-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
 
-.badge{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:11.5px;letter-spacing:.02em;
-  padding:5px 11px;border-radius:999px;border:1px solid var(--line-2);background:rgba(8,11,18,.55)}
-.badge .d{width:7px;height:7px;border-radius:50%}
+.badge{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:11.5px;letter-spacing:.02em;
+  padding:4px 12px;border-radius:999px;border:1px solid var(--line-2);background:rgba(8,11,18,.55)}
+.badge .d{width:8px;height:8px;border-radius:50%}
 .badge.ok{color:#B6F4DB}.badge.ok .d{background:var(--ok);box-shadow:0 0 10px var(--ok)}
 .badge.warn{color:#F7E2AC}.badge.warn .d{background:var(--warn);box-shadow:0 0 10px var(--warn)}
 .badge.off{color:#B7BECE}.badge.off .d{background:var(--off)}
@@ -144,19 +146,19 @@ section{padding:80px 0}
   -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
   box-shadow:0 30px 80px -40px rgba(0,0,0,.9);will-change:transform}
 .rcard-in{display:grid;grid-template-columns:1.1fr .9fr;min-height:min(66vh,540px)}
-.rcard .left{padding:clamp(26px,4vw,50px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.rcard .left{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
 .rcard .num{font-family:ui-monospace,monospace;font-size:13px;color:var(--faint);letter-spacing:.1em}
-.rcard .ico-wrap{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin:18px 0 20px;
+.rcard .ico-wrap{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin:16px 0 20px;
   background:rgba(120,120,255,.1);border:1px solid var(--line-2)}
-.rcard .ico-wrap svg{width:26px;height:26px;color:var(--iris-3)}
-.rcard .title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.rcard .ico-wrap svg{width:24px;height:24px;color:var(--iris-3)}
+.rcard .title-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .rcard h3{font-size:clamp(30px,4.6vw,50px)}
-.rcard .price{font-size:12px;color:var(--faint);padding:4px 10px;border:1px solid var(--line);border-radius:999px}
-.rcard .rdesc{margin:18px 0 0;color:var(--muted);font-size:clamp(15px,1.8vw,17.5px);line-height:1.55;max-width:44ch}
-.rcard .rmeta{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.rcard .visit{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
+.rcard .price{font-size:12px;color:var(--faint);padding:4px 8px;border:1px solid var(--line);border-radius:999px}
+.rcard .rdesc{margin:16px 0 0;color:var(--muted);font-size:clamp(15px,1.8vw,17.5px);line-height:1.55;max-width:44ch}
+.rcard .rmeta{margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.rcard .visit{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
   background:linear-gradient(100deg,var(--iris-1),var(--iris-2));color:#fff;box-shadow:0 10px 34px -12px rgba(120,90,255,.7);transition:transform .3s,gap .3s}
-.rcard .visit:hover{transform:translateY(-2px);gap:13px}
+.rcard .visit:hover{gap:12px;box-shadow:0 16px 40px -8px rgba(120,90,255,.85)}
 .rcard .visit svg{width:16px;height:16px}
 .rcard .host{font-size:12px;color:var(--faint)}
 
@@ -175,11 +177,12 @@ section{padding:80px 0}
 footer{padding:96px 0 120px;text-align:center;position:relative}
 footer .fh{font-size:clamp(30px,5vw,52px);max-width:14ch;margin:0 auto;text-wrap:balance;
   background:linear-gradient(120deg,var(--chrome),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
-footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
-.foot-cta{margin-top:34px;display:flex;justify-content:center}
-.sig{margin-top:34px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
-.craft{margin-top:10px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#46506b}
-.craft span{background:linear-gradient(100deg,var(--iris-1),var(--iris-3));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+footer p{margin:24px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
+.foot-cta{margin-top:32px;display:flex;justify-content:center}
+/* Signature line: handwritten, sentence case. Caveat needs a larger size
+   than a sans to read at the same optical weight. */
+.craft{margin-top:32px;font-family:'Caveat',cursive;font-size:24px;font-weight:500;line-height:1.2;letter-spacing:0;text-transform:none;color:var(--muted)}
+.craft span{background:linear-gradient(100deg,var(--iris-1),var(--iris-3));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
 
 /* ── Tablet ───────────────────────────────────────────────────────
    cover uses 1/-1 (not span 2): spanning more columns than the grid
@@ -207,21 +210,21 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
   .cell.cover,.cell.stat,.cell.mcp,.cell.eff,.cell.phys{grid-column:1/-1;grid-row:auto}
   .cell.cover{min-height:280px}
   .cell{padding:20px}
-  .cover .mock{padding:22px 20px}
+  .cover .mock{padding:24px 20px}
   .lede{font-size:16.5px}
-  .hero-actions{gap:14px}
-  .li-btn{padding:13px 20px}
+  .hero-actions{gap:16px}
+  .li-btn{padding:12px 20px}
   /* card copy + screenshot both need room on a small screen */
   .rcard{top:6vh;border-radius:20px}
   .rcard-in{min-height:0}
   .rcard .right{min-height:172px}
-  .rcard .left{padding:24px 22px 28px}
+  .rcard .left{padding:24px 24px 28px}
   .rcard h3{font-size:30px}
   .rcard .rdesc{font-size:15px}
-  .rcard .ico-wrap{width:44px;height:44px;margin:14px 0 16px}
-  .rcard .tag-abs{top:14px;right:14px}
+  .rcard .ico-wrap{width:44px;height:44px;margin:16px 0 16px}
+  .rcard .tag-abs{top:16px;right:16px}
   footer{padding:76px 0 92px}
-  .shead{margin-bottom:26px}
+  .shead{margin-bottom:24px}
 }
 @media (prefers-reduced-motion:reduce){.iris,.scrollcue .bar{animation:none}html{scroll-behavior:auto}}
 </style>
@@ -247,7 +250,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
     </h1>
     <p class="lede">The most beautifully animated component libraries I am using right now, and exactly which ones your AI editor can build for you.</p>
     <div class="hero-actions">
-      <a class="li-btn" href="https://www.linkedin.com/in/balakumaranux/" target="_blank" rel="noopener" aria-label="Follow Bala on LinkedIn">
+      <a class="li-btn" data-magnetic href="https://www.linkedin.com/in/balakumaranux/" target="_blank" rel="noopener" aria-label="Follow Bala on LinkedIn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
         Follow on LinkedIn
       </a>
@@ -324,7 +327,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="8" rx="4"/><circle cx="8" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg></span>
             <div class="title-row"><h3 class="display">Skiper UI</h3><span class="price">freemium</span></div>
             <p class="rdesc">Premium, uncommon components you don't see everywhere. The dynamic island and image cursor-trail, dropped straight into your landing page.</p>
-            <div class="rmeta"><a class="visit" href="https://skiper-ui.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">skiper-ui.com</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://skiper-ui.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">skiper-ui.com</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/01-skiper.png</div>
@@ -341,7 +344,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="14" width="18" height="6" rx="3"/><circle cx="7" cy="17" r="1"/><circle cx="11" cy="17" r="1"/><circle cx="15" cy="17" r="1"/><path d="M12 4v7M9 8l3 3 3-3"/></svg></span>
             <div class="title-row"><h3 class="display">Vengeance UI</h3><span class="price">free &#183; OSS</span></div>
             <p class="rdesc">Free, open source, and good-looking. Glass docks, spotlight navbars, all with one clean single-line install.</p>
-            <div class="rmeta"><a class="visit" href="https://www.vengenceui.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">vengenceui.com</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://www.vengenceui.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">vengenceui.com</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/02-vengeance.png</div>
@@ -358,7 +361,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 4v16M17 4v16" opacity=".6"/></svg></span>
             <div class="title-row"><h3 class="display">Animmaster Lib</h3><span class="price">from ~$3</span></div>
             <p class="rdesc">Over three hundred animations pulled from award-winning websites, for the price of a coffee. A little old-school, you copy and paste it in yourself.</p>
-            <div class="rmeta"><a class="visit" href="https://animmasterlib.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">animmasterlib.dev</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://animmasterlib.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">animmasterlib.dev</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/03-animmaster.png</div>
@@ -375,7 +378,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(120 12 12)"/></svg></span>
             <div class="title-row"><h3 class="display">Fancy Components</h3><span class="price">free &#183; OSS</span></div>
             <p class="rdesc">Pure fun. Real physics, so letters actually fall and crash into each other, plus an image trail that chases your cursor around the page.</p>
-            <div class="rmeta"><a class="visit" href="https://fancycomponents.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">fancycomponents.dev</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://fancycomponents.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">fancycomponents.dev</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/04-fancy.png</div>
@@ -392,7 +395,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12c3-6 6-6 9 0s6 6 9 0"/><path d="M3 17c3-6 6-6 9 0s6 6 9 0" opacity=".55"/></svg></span>
             <div class="title-row"><h3 class="display">React Bits</h3><span class="price">free &#183; OSS</span></div>
             <p class="rdesc">This one feels like the future. Full-screen WebGL shaders, liquid chrome, iridescence, aurora, and it ships its own MCP. Tell your editor what you want and it drops the shader right in.</p>
-            <div class="rmeta"><a class="visit" href="https://reactbits.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">reactbits.dev</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://reactbits.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">reactbits.dev</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/05-reactbits.png</div>
@@ -409,7 +412,7 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
             <span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></span>
             <div class="title-row"><h3 class="display">SmoothUI</h3><span class="price">try first</span></div>
             <p class="rdesc">The cleanest of the bunch to play with. Dynamic island, Siri orb, number-flow. Same Skiper energy, buttery to demo.</p>
-            <div class="rmeta"><a class="visit" href="https://smoothui.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">smoothui.dev</span></div>
+            <div class="rmeta"><a class="visit" data-magnetic href="https://smoothui.dev" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a><span class="host">smoothui.dev</span></div>
           </div>
           <div class="right">
             <div class="placeholder">screenshot &rarr; assets/06-smoothui.png</div>
@@ -429,12 +432,11 @@ footer p{margin:22px auto 0;max-width:30em;color:var(--muted);font-size:16.5px}
     <h2 class="fh">Go build something that doesn't look like everyone else's.</h2>
     <p>Saved this from the reel? Follow along. I break down a new design stack, in plain language, every single week.</p>
     <div class="foot-cta">
-      <a class="li-btn" href="https://www.linkedin.com/in/balakumaranux/" target="_blank" rel="noopener">
+      <a class="li-btn" data-magnetic href="https://www.linkedin.com/in/balakumaranux/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
         Follow me on LinkedIn
       </a>
     </div>
-    <div class="sig">By Bala</div>
     <div class="craft">Crafted carefully by <span>Blake Genesis</span></div>
   </div>
 </footer>
@@ -468,7 +470,15 @@ document.documentElement.classList.add('js');
   var ticking=false;
   function onScroll(){
     var y=scrollY;
-    for(var i=0;i<paras.length;i++){var f=parseFloat(paras[i].getAttribute('data-parallax'));paras[i].style.transform='translateY('+(y*f)+'px)';}
+    // Parallax must stop once its section has scrolled away. Unclamped, the
+    // hero kept drifting (800px down by the time you reached the deck), which
+    // dragged an offscreen element over later sections and burned work forever.
+    for(var i=0;i<paras.length;i++){
+      var el=paras[i], f=parseFloat(el.getAttribute('data-parallax'));
+      var host=el.closest('header, section') || el.parentElement;
+      var limit=host ? host.offsetHeight : innerHeight;
+      el.style.transform='translateY('+(Math.min(y, limit)*f)+'px)';
+    }
     if(!reduce){for(var j=0;j<deck.length;j++){var c=deck[j];var r=c.getBoundingClientRect();
       var stickTop=innerHeight*0.13;var p=Math.min(1,Math.max(0,(stickTop-r.top)/(r.height*.9)));
       var sc=1-p*0.08, op=1-p*0.4;c.style.transform='scale('+sc+')';c.style.opacity=(j===deck.length-1?1:op);}}
@@ -482,13 +492,27 @@ document.documentElement.classList.add('js');
   if(window.gsap && !reduce){
     gsap.registerPlugin(ScrollTrigger);
 
-    // 1. Hero load sequence: eyebrow, masked heading lines, lede, buttons.
-    gsap.timeline({defaults:{ease:'power3.out'}})
-      .from('.eyebrow',       {y:18, opacity:0, duration:.7})
-      .from('.hero-h .line',  {yPercent:112, duration:1.1, stagger:.12}, '-=.35')
-      .from('.lede',          {y:22, opacity:0, duration:.85}, '-=.7')
-      .from('.hero-actions',  {y:18, opacity:0, duration:.75}, '-=.6')
-      .from('.scrollcue',     {opacity:0, duration:.6}, '-=.4');
+    // 1. Hero load sequence, held until the webfonts actually arrive.
+    //    Playing it earlier means the heading reflows mid-animation when the
+    //    real face swaps in. Waiting lets the lines rise and un-blur exactly
+    //    as Inter lands, so the font swap becomes part of the motion.
+    gsap.set('.eyebrow, .lede, .hero-actions, .scrollcue', {opacity:0, y:16});
+    gsap.set('.hero-h .line', {yPercent:110, opacity:0, filter:'blur(12px)'});
+
+    function playHero(){
+      document.documentElement.classList.add('fonts-ready');
+      gsap.timeline({defaults:{ease:'power3.out'}})
+        .to('.eyebrow',      {y:0, opacity:1, duration:.7})
+        .to('.hero-h .line', {yPercent:0, opacity:1, filter:'blur(0px)', duration:1.15, stagger:.14}, '-=.35')
+        .to('.lede',         {y:0, opacity:1, duration:.85}, '-=.7')
+        .to('.hero-actions', {y:0, opacity:1, duration:.75}, '-=.6')
+        .to('.scrollcue',    {opacity:1, y:0, duration:.6}, '-=.4');
+    }
+    // Race the font promise against a timeout so a slow font CDN can never
+    // leave the hero stuck invisible.
+    if(document.fonts && document.fonts.ready){
+      Promise.race([document.fonts.ready, new Promise(function(r){setTimeout(r,1500);})]).then(playHero);
+    } else { playHero(); }
 
     // 2. Section heads + footer appear on scroll (bento handled separately below).
     gsap.utils.toArray('[data-reveal]:not(.bento)').forEach(function(el){
@@ -506,9 +530,46 @@ document.documentElement.classList.add('js');
     gsap.utils.toArray('.rcard').forEach(function(card){
       gsap.from(card.querySelectorAll('.left > *'), {
         scrollTrigger:{trigger:card, start:'top 78%'},
-        y:26, opacity:0, duration:.7, stagger:.07, ease:'power3.out'
+        y:24, opacity:0, duration:.7, stagger:.08, ease:'power3.out'
       });
     });
+
+    // 5. Magnetic buttons. They lean toward the cursor from a distance and
+    //    spring home when it leaves. Reads on a real pointer only; on touch
+    //    there is no hover, so it would just be wasted work.
+    if(fine){
+      var mags = gsap.utils.toArray('[data-magnetic]');
+      var RANGE = 90, PULL = .36;
+      mags.forEach(function(el){ el._home = true; });
+
+      function magnetise(e){
+        for(var i=0; i<mags.length; i++){
+          var el = mags[i], r = el.getBoundingClientRect();
+          if(r.bottom < -200 || r.top > innerHeight + 200) continue; // skip offscreen
+          var dx = e.clientX - (r.left + r.width/2);
+          var dy = e.clientY - (r.top + r.height/2);
+          var zone = Math.max(r.width, r.height)/2 + RANGE;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < zone){
+            var f = (1 - dist/zone) * PULL;           // pull eases off with distance
+            gsap.to(el, {x:dx*f, y:dy*f, duration:.45, ease:'power3.out', overwrite:'auto'});
+            el._home = false;
+          } else if(!el._home){
+            gsap.to(el, {x:0, y:0, duration:.9, ease:'elastic.out(1,.35)', overwrite:'auto'});
+            el._home = true;
+          }
+        }
+      }
+      // rAF-throttled: pointermove fires far more often than we can paint,
+      // and each pass reads 8 bounding rects.
+      var queued = false, lastEvt = null;
+      addEventListener('pointermove', function(e){
+        lastEvt = e;
+        if(queued) return;
+        queued = true;
+        requestAnimationFrame(function(){ queued = false; magnetise(lastEvt); });
+      }, {passive:true});
+    }
   }
 })();
 </script>
