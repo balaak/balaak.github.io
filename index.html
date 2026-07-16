@@ -9,7 +9,8 @@
 <!-- Fonts load normally here (this is your own hosting, no sandbox) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -35,12 +36,15 @@ body{
 /* Inter carries the display role now, so headings lean on weight and
    tight tracking for presence (Inter needs more negative tracking than
    a display face at large sizes). */
-/* margin:0 matters. The browser default for a heading is margin:1em 0, which
-   scales with font-size, so a 52px h3 was silently adding 52px above AND
+/* Clash Display carries the headings; Inter stays for body copy.
+   Clash is already a display face, so it needs far less negative tracking
+   than Inter did (-.02em here vs -.032em), and 700 is its top weight.
+   margin:0 matters: the browser default for a heading is margin:1em 0,
+   which scales with font-size, so a 52px h3 silently added 52px above AND
    below itself. Spacing is set explicitly per component instead. */
-h1,h2,h3,h4,.display{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:700;letter-spacing:-.032em;line-height:1}
-.hero-h{font-weight:800;letter-spacing:-.042em}
-footer .fh{font-weight:800;letter-spacing:-.038em}
+h1,h2,h3,h4,.display{margin:0;font-family:'Clash Display','Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1}
+.hero-h{font-weight:700;letter-spacing:-.028em}
+footer .fh{font-weight:700;letter-spacing:-.024em}
 a{color:inherit;text-decoration:none}
 
 /* ===== BACKGROUND VIDEO + OVERLAY ===== */
@@ -133,7 +137,7 @@ section{padding:80px 0}
   border:1px solid var(--line-2);background:rgba(255,255,255,.05)}
 .pill.primary{background:linear-gradient(100deg,var(--iris-1),var(--iris-2));border:none;color:#fff}
 .cell .ico{width:32px;height:32px;color:var(--iris-3)}
-.cell .big-n{font-size:clamp(40px,6vw,60px);font-weight:800;line-height:1;letter-spacing:-.04em;
+.cell .big-n{font-family:'Clash Display','Inter',system-ui,sans-serif;font-size:clamp(40px,6vw,60px);font-weight:700;line-height:1;letter-spacing:-.02em;
   background:linear-gradient(120deg,var(--chrome),var(--iris-3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .cell .lbl{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.4}
 .cell h4{margin:16px 0 8px;font-size:18px;font-weight:600;letter-spacing:-.022em}
