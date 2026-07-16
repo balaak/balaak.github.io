@@ -9,8 +9,7 @@
 <!-- Fonts load normally here (this is your own hosting, no sandbox) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -33,7 +32,12 @@ body{
   font-size:17px;line-height:1.6;letter-spacing:-.011em;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
 }
-h1,h2,h3,.display{font-family:'Clash Display','Inter',system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1}
+/* Inter carries the display role now, so headings lean on weight and
+   tight tracking for presence (Inter needs more negative tracking than
+   a display face at large sizes). */
+h1,h2,h3,.display{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:700;letter-spacing:-.032em;line-height:1}
+.hero-h{font-weight:800;letter-spacing:-.042em}
+footer .fh{font-weight:800;letter-spacing:-.038em}
 a{color:inherit;text-decoration:none}
 
 /* ===== BACKGROUND VIDEO + OVERLAY ===== */
@@ -118,10 +122,10 @@ section{padding:80px 0}
   border:1px solid var(--line-2);background:rgba(255,255,255,.05)}
 .pill.primary{background:linear-gradient(100deg,var(--iris-1),var(--iris-2));border:none;color:#fff}
 .cell .ico{width:34px;height:34px;color:var(--iris-3)}
-.cell .big-n{font-family:'Clash Display';font-size:clamp(40px,6vw,60px);font-weight:700;line-height:1;
+.cell .big-n{font-size:clamp(40px,6vw,60px);font-weight:800;line-height:1;letter-spacing:-.04em;
   background:linear-gradient(120deg,var(--chrome),var(--iris-3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .cell .lbl{color:var(--muted);font-size:13.5px;margin-top:6px;line-height:1.4}
-.cell h4{margin:14px 0 6px;font-size:18px;font-family:'Clash Display';font-weight:600}
+.cell h4{margin:14px 0 6px;font-size:18px;font-weight:600;letter-spacing:-.022em}
 .cell .desc-s{color:var(--muted);font-size:14px;line-height:1.5}
 .mcp .legend-row{display:flex;flex-direction:column;gap:11px;margin-top:12px}
 .mcp .li-row{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
