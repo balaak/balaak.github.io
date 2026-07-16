@@ -54,7 +54,13 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 /* GSAP owns the reveal states at runtime, so nothing is hidden by CSS.
    If JS ever fails to load, all content stays visible. */
-.hero-h .line-wrap{display:block;overflow:hidden}
+/* The mask that lets each line rise into view. It clips ONLY while the
+   lines are animating: line-height is .92, so descenders (the g in
+   "illegal") sit outside the line box and a permanent overflow:hidden
+   sliced them. JS adds .is-masked, then drops it once the hero has
+   played, so the finished headline is never clipped. */
+.hero-h .line-wrap{display:block}
+.hero-h.is-masked .line-wrap{overflow:hidden}
 .hero-h .line{display:block;will-change:transform}
 
 /* ===== HERO ===== */
@@ -73,7 +79,7 @@ header{position:relative;min-height:92vh;display:flex;flex-direction:column;just
 
 /* LinkedIn button */
 .li-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
-  background:var(--li);color:#fff;box-shadow:0 10px 30px -10px rgba(10,102,194,.8);transition:transform .3s,box-shadow .3s}
+  background:var(--li);color:#fff;box-shadow:0 10px 30px -10px rgba(10,102,194,.8);transition:box-shadow .3s}
 /* No transform on hover: GSAP owns transform for the magnetic pull,
    and an inline tween would fight a CSS one. Shadow does the lift. */
 .li-btn:hover{box-shadow:0 16px 40px -8px rgba(10,102,194,.95)}
@@ -95,7 +101,7 @@ section{padding:80px 0}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
 .cell{position:relative;border:1px solid var(--line);border-radius:20px;background:var(--glass);
   -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);
-  overflow:hidden;padding:24px;transition:border-color .4s,transform .5s cubic-bezier(.2,.7,.2,1)}
+  overflow:hidden;padding:24px;transition:border-color .4s}
 .cell .glow{position:absolute;inset:-1px;border-radius:inherit;opacity:0;transition:opacity .45s;pointer-events:none;
   background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(120,120,255,.22),transparent 60%)}
 .cell:hover .glow{opacity:1}
@@ -157,7 +163,7 @@ section{padding:80px 0}
 .rcard .rdesc{margin:16px 0 0;color:var(--muted);font-size:clamp(15px,1.8vw,17.5px);line-height:1.55;max-width:44ch}
 .rcard .rmeta{margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .rcard .visit{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:560;font-size:14.5px;
-  background:linear-gradient(100deg,var(--iris-1),var(--iris-2));color:#fff;box-shadow:0 10px 34px -12px rgba(120,90,255,.7);transition:transform .3s,gap .3s}
+  background:linear-gradient(100deg,var(--iris-1),var(--iris-2));color:#fff;box-shadow:0 10px 34px -12px rgba(120,90,255,.7);transition:gap .3s,box-shadow .3s}
 .rcard .visit:hover{gap:12px;box-shadow:0 16px 40px -8px rgba(120,90,255,.85)}
 .rcard .visit svg{width:16px;height:16px}
 .rcard .host{font-size:12px;color:var(--faint)}
@@ -453,14 +459,21 @@ document.documentElement.classList.add('js');
 
   // magnetic 3D tilt + glow tracking
   if(fine && !reduce){
+    // Tilt runs through GSAP rather than writing style.transform directly.
+    // A raw transform string would clobber the reveal/deck tweens on the same
+    // element; GSAP composes the rotation with their y/scale instead.
     document.querySelectorAll('[data-tilt]').forEach(function(el){
-      var isDeck=el.hasAttribute('data-deck');
+      var isDeck=el.hasAttribute('data-deck'); // deck cards own their transform (scroll scaling) -> glow only
       el.addEventListener('pointermove',function(e){
         var r=el.getBoundingClientRect();var px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
         el.style.setProperty('--mx',(px*100)+'%');el.style.setProperty('--my',(py*100)+'%');
-        if(!isDeck){var rx=(py-.5)*-6,ry=(px-.5)*8;el.style.transform='perspective(1000px) rotateX('+rx+'deg) rotateY('+ry+'deg)';}
+        if(!isDeck && window.gsap){
+          gsap.to(el,{rotateX:(py-.5)*-6, rotateY:(px-.5)*8, transformPerspective:1000, duration:.4, ease:'power2.out'});
+        }
       });
-      if(!isDeck) el.addEventListener('pointerleave',function(){el.style.transform='';});
+      if(!isDeck) el.addEventListener('pointerleave',function(){
+        if(window.gsap) gsap.to(el,{rotateX:0, rotateY:0, duration:.6, ease:'power2.out'});
+      });
     });
   }
 
@@ -496,12 +509,17 @@ document.documentElement.classList.add('js');
     //    Playing it earlier means the heading reflows mid-animation when the
     //    real face swaps in. Waiting lets the lines rise and un-blur exactly
     //    as Inter lands, so the font swap becomes part of the motion.
+    var heroH = document.querySelector('.hero-h');
+    if(heroH) heroH.classList.add('is-masked');   // clip only while the lines travel
     gsap.set('.eyebrow, .lede, .hero-actions, .scrollcue', {opacity:0, y:16});
     gsap.set('.hero-h .line', {yPercent:110, opacity:0, filter:'blur(12px)'});
 
     function playHero(){
       document.documentElement.classList.add('fonts-ready');
-      gsap.timeline({defaults:{ease:'power3.out'}})
+      gsap.timeline({defaults:{ease:'power3.out'}, onComplete:function(){
+          // Drop the mask so descenders are never clipped at rest.
+          if(heroH) heroH.classList.remove('is-masked');
+        }})
         .to('.eyebrow',      {y:0, opacity:1, duration:.7})
         .to('.hero-h .line', {yPercent:0, opacity:1, filter:'blur(0px)', duration:1.15, stagger:.14}, '-=.35')
         .to('.lede',         {y:0, opacity:1, duration:.85}, '-=.7')
